@@ -1,0 +1,63 @@
+<main class="container">
+  <div class="card">
+    <div class="tips-input">
+      <div class="amount">
+        <label>Bill</label>
+        <input
+          class="bill"
+          #billInput
+          type="number"
+          name="bill"
+          [(ngModel)]="bill"
+          (keyup)="calcTip(billInput.value)"
+        />
+      </div>
+      <div class="select">
+        <div class="prec" *ngFor="let tip of tips" (click)="calcpres(tip)">
+          {{ tip }}
+        </div>
+        <input type="number" class="custom" placeholder="custom" />
+      </div>
+      <div class="pepole">
+        <label>Numbers of People</label>
+        <input
+          type="number"
+          #pepoleInput
+          class="pepole"
+          name="pepole"
+          [(ngModel)]="pepole"
+          (keyup)="calcPepole(pepoleInput.value)"
+        />
+      </div>
+    </div>
+    <div class="tips-output">
+      <div class="tip-amount">
+        <div>
+          <p class="title">Tip Amount</p>
+          <p class="person">/ Person</p>
+        </div>
+        <div class="price">
+          <img src="../../assets/images/icon-dollar.svg" alt="" />
+          <ng-container *ngIf="tip != 0; else templateA">
+            {{ tip }}
+          </ng-container>
+          <ng-template #templateA> 0.00 </ng-template>
+        </div>
+      </div>
+      <div class="total">
+        <div>
+          <p class="title">Total</p>
+          <p class="person">/ Person</p>
+        </div>
+        <div class="price">
+          <img src="../../assets/images/icon-dollar.svg" alt="" />
+          <ng-container *ngIf="total != 0; else templateA">
+            {{ total }}
+          </ng-container>
+          <ng-template #templateA> 0.00 </ng-template>
+        </div>
+      </div>
+      <button class="btn" (click)="clearAllValues()">RESET</button>
+    </div>
+  </div>
+</main>
